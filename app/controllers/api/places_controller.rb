@@ -19,7 +19,7 @@ class Api::PlacesController < ApplicationController
 
     radius = params[:radius]
 
-    @response = HTTP.headers(:"x-api-key"=> "#{ENV["SYGIC_API_KEY"]}").get("https://api.sygictravelapi.com/1.1/en/places/list?area=#{@begin_lat},#{@begin_lng},#{radius}").parse
+    @response = HTTP.headers(:"x-api-key"=> "#{ENV["SYGIC_API_KEY"]}").get("https://api.sygictravelapi.com/1.1/en/places/list?area=#{@begin_lat},#{@begin_lng},#{radius}").parse["data"]["places"]
 
     render 'index.json.jbuilder'
   end
